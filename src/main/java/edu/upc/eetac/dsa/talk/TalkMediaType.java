@@ -12,7 +12,5 @@ public interface TalkMediaType {
     public final static String TALK_TOPIC_COLLECTION = "application/vnd.dsa.talk.topic.collection+json";
     public final static String TALK_GROUP = "application/vnd.dsa.talk.group+json";
     public final static String TALK_GROUP_COLLECTION = "application/vnd.dsa.talk.group.collection+json";
-    public final static String TALK_STING = "application/vnd.dsa.talk.sting+json";
-    public final static String TALK_STING_COLLECTION = "application/vnd.dsa.talk.sting.collection+json";
     public final static String TALK_ROOT = "application/vnd.dsa.talk.root+json";
 }
