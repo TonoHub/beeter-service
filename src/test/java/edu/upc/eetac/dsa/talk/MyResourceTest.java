@@ -1,9 +1,26 @@
-package edu.upc.eetac.dsa.beeter;
+package edu.upc.eetac.dsa.talk;
+
+/**
+ * Created by tono on 27/10/2015.
+ */
+
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
+import static org.junit.Assert.assertEquals;
+
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+
+import edu.upc.eetac.dsa.talk.Main;
 import org.glassfish.grizzly.http.server.HttpServer;
 
 import org.junit.After;
@@ -29,7 +46,7 @@ public class MyResourceTest {
         // --
         // c.configuration().enable(new org.glassfish.jersey.media.json.JsonJaxbFeature());
 
-        target = c.target(Main.BASE_URI);
+        target = c.target(Main.getBaseURI());
     }
 
     @After
@@ -46,3 +63,4 @@ public class MyResourceTest {
         assertEquals("Got it!", responseMsg);
     }
 }
+

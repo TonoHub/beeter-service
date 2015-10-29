@@ -1,4 +1,4 @@
-package edu.upc.eetac.dsa.beeter;
+package edu.upc.eetac.dsa.talk;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

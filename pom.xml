@@ -3,11 +3,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>edu.upc.eetac.dsa.beeter</groupId>
-    <artifactId>beeter-service</artifactId>
+    <groupId>edu.upc.eetac.dsa.talk</groupId>
+    <artifactId>talk-service</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>beeter-service</name>
+    <name>talk-service</name>
 
     <dependencyManagement>
         <dependencies>
@@ -23,8 +23,49 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-grizzly2-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>javax.el</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.ext</groupId>
+            <artifactId>jersey-declarative-linking</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.36</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.12</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP-java6</artifactId>
+            <version>2.3.9</version>
+            <scope>compile</scope>
         </dependency>
         <!-- uncomment this to get JSON support:
          <dependency>
@@ -64,7 +105,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>edu.upc.eetac.dsa.beeter.Main</mainClass>
+                    <mainClass>edu.upc.eetac.dsa.talk.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>

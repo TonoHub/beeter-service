@@ -24,9 +24,17 @@
         <processorPath useClasspath="true" />
         <module name="beeter-service" />
       </profile>
+      <profile default="false" name="Annotation profile for talk-service" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="talk-service" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="beeter-service" target="1.7" />
+      <module name="talk-service" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
