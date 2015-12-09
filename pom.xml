@@ -3,11 +3,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>edu.upc.eetac.dsa.talk</groupId>
-    <artifactId>talk-service</artifactId>
+    <groupId>edu.upc.eetac.dsa.rate</groupId>
+    <artifactId>rate-service</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>talk-service</name>
+    <name>rate-service</name>
 
     <dependencyManagement>
         <dependencies>
@@ -105,7 +105,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>edu.upc.eetac.dsa.talk.Main</mainClass>
+                    <mainClass>edu.upc.eetac.dsa.rate.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>

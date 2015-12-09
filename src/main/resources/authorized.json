@@ -20,7 +20,14 @@
   },
 
   {
-    "path": "(?i)groups/?([0-9a-f]{32})?",
+    "path": "(?i)games/?([0-9a-f]{32})?",
+    "methods": [
+      "GET"
+    ]
+  },
+
+  {
+    "path": "(?i)rev/?([0-9a-f]{32})?",
     "methods": [
       "GET"
     ]
