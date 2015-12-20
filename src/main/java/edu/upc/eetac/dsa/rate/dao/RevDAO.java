@@ -13,7 +13,7 @@ import java.sql.SQLException;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 public interface RevDAO {
-    public Rev createRev(String userid, String gameid, String content, Integer likes) throws SQLException;
+    public Rev createRev(String userid, String gameid, String content) throws SQLException;
     public Rev getRevById(String id) throws SQLException;
     public RevCollection getRev (long timestamp, boolean before) throws SQLException;
     public Rev updateRev(String id, String content) throws SQLException;

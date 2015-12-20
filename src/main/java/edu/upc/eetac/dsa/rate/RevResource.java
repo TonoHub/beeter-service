@@ -23,14 +23,14 @@ public class RevResource {
 
     @Path("/{gameid}")
     @POST
-    public Response createRev(@PathParam("gameid") String gameid, @FormParam("content") String content, @FormParam("likes") Integer likes, @Context UriInfo uriInfo) throws URISyntaxException {
+    public Response createRev(@PathParam("gameid") String gameid, @FormParam("content") String content, @Context UriInfo uriInfo) throws URISyntaxException {
         if (content == null)
             throw new BadRequestException("all parameters are mandatory");
         RevDAO stingDAO = new RevDAOImpl();
         Rev sting = null;
         AuthToken authenticationToken = null;
         try {
-            sting = stingDAO.createRev(securityContext.getUserPrincipal().getName(),gameid,content,likes);
+            sting = stingDAO.createRev(securityContext.getUserPrincipal().getName(),gameid,content);
         } catch (SQLException e) {
             throw new InternalServerErrorException();
         }

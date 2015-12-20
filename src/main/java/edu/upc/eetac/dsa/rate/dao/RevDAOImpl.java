@@ -14,7 +14,7 @@ import java.sql.*;
 public class RevDAOImpl implements RevDAO {
 
     @Override
-    public Rev createRev(String userid, String gameid, String content, Integer likes) throws SQLException {
+    public Rev createRev(String userid, String gameid, String content) throws SQLException {
         Connection connection = null;
         PreparedStatement stmt = null;
         String id = null;
@@ -33,7 +33,6 @@ public class RevDAOImpl implements RevDAO {
             stmt.setString(2, userid);
             stmt.setString(3, gameid);
             stmt.setString(4, content);
-            stmt.setInt(5, likes);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -53,6 +52,9 @@ public class RevDAOImpl implements RevDAO {
 
         Connection connection = null;
         PreparedStatement stmt = null;
+        PreparedStatement stat = null;
+        Boolean like;
+        int count = 0;
         try {
             connection = Database.getConnection();
 
@@ -65,17 +67,52 @@ public class RevDAOImpl implements RevDAO {
                 rev.setId(rs.getString("id"));
                 rev.setUserid(rs.getString("userid"));
                 rev.setGameid(rs.getString("gameid"));
-                rev.setLikes(rs.getInt("likes"));
                 rev.setContent(rs.getString("content"));
                 rev.setCreationTimestamp(rs.getTimestamp("creation_timestamp").getTime());
                 rev.setLastModified(rs.getTimestamp("last_modified").getTime());
             }
+
         } catch (SQLException e) {
             throw e;
-        } finally {
+        }
+        finally {
             if (stmt != null) stmt.close();
+        }
+
+        try
+        {
+            stat = connection.prepareStatement(RevDAOQuery.GET_REV_LIKES_BY_ID);
+            stat.setString(1, id);
+            ResultSet rs = stat.executeQuery();
+            while (rs.next()) {
+                like = rs.getBoolean("likes");
+                if (like == true)
+                count = count + 1;
+
+
+                else
+                count = count - 1;
+
+            }
+            rev.setLikes(count);
+
+        }
+
+        catch (SQLException e)
+        {
+
+        throw e;
+        }
+
+        finally {
+            if (stat != null) stat.close();
             if (connection != null) connection.close();
         }
+
+
+
+
+
         return rev;
     }
 

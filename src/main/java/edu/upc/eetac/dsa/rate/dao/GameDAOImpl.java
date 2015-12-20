@@ -14,7 +14,7 @@ import java.sql.*;
 public class GameDAOImpl implements GameDAO {
 
     @Override
-    public Game createGame(String name, String genre, Integer score, Integer year) throws SQLException {
+    public Game createGame(String name, String genre, Integer year) throws SQLException {
         Connection connection = null;
         PreparedStatement stmt = null;
         String id = null;
@@ -32,8 +32,7 @@ public class GameDAOImpl implements GameDAO {
             stmt.setString(1, id);
             stmt.setString(2, name);
             stmt.setString(3, genre);
-            stmt.setInt(4, score);
-            stmt.setInt(5, year);
+            stmt.setInt(4, year);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -49,10 +48,13 @@ public class GameDAOImpl implements GameDAO {
 
     @Override
     public Game getGameById(String id) throws SQLException {
-        Game topic = null;
+        Game game = null;
 
         Connection connection = null;
         PreparedStatement stmt = null;
+        PreparedStatement stat = null;
+        int scores = 0;
+        int games = 0;
         try {
             connection = Database.getConnection();
 
@@ -61,22 +63,39 @@ public class GameDAOImpl implements GameDAO {
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                topic = new Game();
-                topic.setId(rs.getString("id"));
-                topic.setName(rs.getString("name"));
-                topic.setGenre(rs.getString("genre"));
-                topic.setScore(rs.getInt("score"));
-                topic.setYear(rs.getInt("year"));
-                topic.setCreationTimestamp(rs.getTimestamp("creation_timestamp").getTime());
-                topic.setLastModified(rs.getTimestamp("last_modified").getTime());
+                game = new Game();
+                game.setId(rs.getString("id"));
+                game.setName(rs.getString("name"));
+                game.setGenre(rs.getString("genre"));
+                game.setYear(rs.getInt("year"));
+                game.setCreationTimestamp(rs.getTimestamp("creation_timestamp").getTime());
+                game.setLastModified(rs.getTimestamp("last_modified").getTime());
             }
         } catch (SQLException e) {
             throw e;
         } finally {
             if (stmt != null) stmt.close();
+        }
+
+        try {
+            stat = connection.prepareStatement(GameDAOQuery.GET_GAME_SCORE_BY_ID);
+            stat.setString(1, id);
+
+            ResultSet rs = stat.executeQuery();
+            while (rs.next()) {
+                scores = scores + rs.getInt("gamescore");
+                games = games + 1;
+            }
+            if (games != 0)
+            game.setScore(Math.round(scores/games));
+        }
+        catch (SQLException e) {
+            throw e;
+        } finally {
+            if (stat != null) stat.close();
             if (connection != null) connection.close();
         }
-        return topic;
+        return game;
     }
 
     @Override
@@ -131,9 +150,8 @@ public class GameDAOImpl implements GameDAO {
             stmt = connection.prepareStatement(GameDAOQuery.UPDATE_GAME);
             stmt.setString(1, name);
             stmt.setString(2, genre);
-            stmt.setInt(3, score);
-            stmt.setInt(4, year);
-            stmt.setString(5, id);
+            stmt.setInt(3, year);
+            stmt.setString(4, id);
 
             int rows = stmt.executeUpdate();
             if (rows == 1)

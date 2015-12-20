@@ -34,6 +34,20 @@
   },
 
   {
+    "path": "(?i)likes/?([0-9a-f]{32})?",
+    "methods": [
+      "GET"
+    ]
+  },
+
+  {
+    "path": "(?i)score/?([0-9a-f]{32})?",
+    "methods": [
+      "GET"
+    ]
+  },
+
+  {
     "path": "login",
     "methods": ["POST"]
   }

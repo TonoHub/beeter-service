@@ -10,5 +10,7 @@ public interface RateMediaType {
     public final static String RATE_REV_COLLECTION = "application/vnd.dsa.rate.rev.collection+json";
     public final static String RATE_GAME = "application/vnd.dsa.rate.game+json";
     public final static String RATE_GAME_COLLECTION = "application/vnd.dsa.rate.game.collection+json";
+    public final static String RATE_SCORE = "application/vnd.dsa.rate.score+json";
+    public final static String RATE_LIKES = "application/vnd.dsa.rate.likes+json";
     public final static String RATE_ROOT = "application/vnd.dsa.rate.root+json";
 }

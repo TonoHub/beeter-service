@@ -22,14 +22,14 @@ public class GameResource {
 
 
     @POST
-    public Response createGame(@FormParam("name") String name, @FormParam("genre") String genre, @FormParam("score") Integer score, @FormParam("year") Integer year, @Context UriInfo uriInfo) throws URISyntaxException {
+    public Response createGame(@FormParam("name") String name, @FormParam("genre") String genre, @FormParam("year") Integer year, @Context UriInfo uriInfo) throws URISyntaxException {
         if (name == null || genre == null || year == null)
             throw new BadRequestException("all parameters are mandatory");
         GameDAO stingDAO = new GameDAOImpl();
         Game sting = null;
         AuthToken authenticationToken = null;
         try {
-            sting = stingDAO.createGame(name, genre, score, year);
+            sting = stingDAO.createGame(name, genre, year);
         } catch (SQLException e) {
             throw new InternalServerErrorException();
         }

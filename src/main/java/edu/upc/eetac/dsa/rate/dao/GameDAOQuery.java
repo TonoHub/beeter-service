@@ -9,10 +9,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public interface GameDAOQuery {
     public final static String UUID = "select REPLACE(UUID(),'-','')";
-    public final static String CREATE_GAME = "insert into game (id, name, genre, score, year) values (UNHEX(?), ?, ?, ?, ?)";
-    public final static String GET_GAME_BY_ID = "select hex(s.id) as id, s.name, s.genre, s.score, s.year, s.creation_timestamp, s.last_modified from game s where s.id=unhex(?)";
+    public final static String CREATE_GAME = "insert into game (id, name, genre, year) values (UNHEX(?), ?, ?, ?)";
+    public final static String GET_GAME_BY_ID = "select hex(s.id) as id, s.name, s.genre, s.year, s.creation_timestamp, s.last_modified from game s where s.id=unhex(?)";
+    public final static String GET_GAME_SCORE_BY_ID = "select s.gamescore from score s where s.gameid=unhex(?)";
     public final static String GET_GAME = "select hex(id) as id, name, creation_timestamp, last_modified from game where creation_timestamp < ? order by creation_timestamp desc limit 5";
     public final static String GET_GAME_AFTER = "select hex(id) as id, name, creation_timestamp, last_modified from game  where creation_timestamp > ? order by creation_timestamp desc limit 5";
-    public final static String UPDATE_GAME = "update game set name=?, genre=?, score=?, year=? where id=unhex(?) ";
+    public final static String UPDATE_GAME = "update game set name=?, genre=?, year=? where id=unhex(?) ";
     public final static String DELETE_GAME = "delete from game where id=unhex(?)";
 }

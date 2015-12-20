@@ -13,7 +13,7 @@ import java.sql.SQLException;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 public interface GameDAO {
-    public Game createGame(String name, String genre, Integer score, Integer year) throws SQLException;
+    public Game createGame(String name, String genre, Integer year) throws SQLException;
     public Game getGameById(String id) throws SQLException;
     public GameCollection getGame(long timestamp, boolean before) throws SQLException;
     public Game updateGame(String id, String name, String genre, Integer score, Integer year) throws SQLException;
